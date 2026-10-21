@@ -121,3 +121,12 @@ Read `docs/README.md` inside that installed package first, then read the relevan
 
 This block is written and re-added by `turbo` before repository-scoped commands when an AI agent is detected. In the Turborepo source repository, its template is defined in `crates/turborepo-cli/src/cli/agent_guidance.rs`. Removing the managed block while updates are enabled means a later qualifying invocation will add it again. Set `"agentGuidance": false` in the root `turbo.json` or `turbo.jsonc` to opt out; this does not remove an existing block. Keep the block committed with your work to avoid an uncommitted change on the next agent invocation.
 <!-- END:turborepo-agent-rules -->
+
+## Protocolo de traspaso Claude Code <-> OpenCode
+
+Este repo se trabaja indistintamente con Claude Code y OpenCode. Para no perder contexto al saltar de una a otra:
+
+- `HANDOFF.md` es el estado vivo de la tarea: leelo al arrancar la sesion y mantenelo al dia (max. 40 lineas).
+- Al cerrar una sesion, corre `/handoff` para volcar el estado a `HANDOFF.md`.
+- `AGENTS.md` es la fuente unica de instrucciones: OpenCode lo lee siempre, y Claude Code lo lee si lo importas con `@AGENTS.md` desde `CLAUDE.md`.
+- Commitea por bloque de trabajo: `git log -1` + `git status` reconstruyen el estado para cualquiera de las dos CLIs.
